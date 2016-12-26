@@ -1,39 +1,128 @@
-r_ulna_controller0:
+m0_controller:
   type: muscle_controllers/MuscleController
-  name: ulna0
+  name: m0
   pid: {p: 700,  i: 0.01, d: 100}
-
-r_humerus_controller0:
+m1_controller:
   type: muscle_controllers/MuscleController
-  name: humerus0
+  name: m1
   pid: {p: 700,  i: 0.01, d: 100}
-
-r_ulna_controller1:
+m2_controller:
   type: muscle_controllers/MuscleController
-  name: ulna1
+  name: m2
   pid: {p: 700,  i: 0.01, d: 100}
-
-r_humerus_controller1:
+m3_controller:
   type: muscle_controllers/MuscleController
-  name: humerus1
+  name: m3
   pid: {p: 700,  i: 0.01, d: 100}
-
-r_ulna_controller2:
+m4_controller:
   type: muscle_controllers/MuscleController
-  name: ulna2
+  name: m4
   pid: {p: 700,  i: 0.01, d: 100}
-
-r_humerus_controller2:
+m5_controller:
   type: muscle_controllers/MuscleController
-  name: humerus2
+  name: m5
   pid: {p: 700,  i: 0.01, d: 100}
-
-r_ulna_controller3:
+m6_controller:
   type: muscle_controllers/MuscleController
-  name: ulna3
+  name: m6
   pid: {p: 700,  i: 0.01, d: 100}
-
-r_humerus_controller3:
+m7_controller:
   type: muscle_controllers/MuscleController
-  name: humerus3
+  name: m7
+  pid: {p: 700,  i: 0.01, d: 100}
+m8_controller:
+  type: muscle_controllers/MuscleController
+  name: m8
+  pid: {p: 700,  i: 0.01, d: 100}
+m9_controller:
+  type: muscle_controllers/MuscleController
+  name: m9
+  pid: {p: 700,  i: 0.01, d: 100}
+m10_controller:
+  type: muscle_controllers/MuscleController
+  name: m10
+  pid: {p: 700,  i: 0.01, d: 100}
+m11_controller:
+  type: muscle_controllers/MuscleController
+  name: m11
+  pid: {p: 700,  i: 0.01, d: 100}
+m12_controller:
+  type: muscle_controllers/MuscleController
+  name: m12
+  pid: {p: 700,  i: 0.01, d: 100}
+m13_controller:
+  type: muscle_controllers/MuscleController
+  name: m13
+  pid: {p: 700,  i: 0.01, d: 100}
+m14_controller:
+  type: muscle_controllers/MuscleController
+  name: m14
+  pid: {p: 700,  i: 0.01, d: 100}
+m15_controller:
+  type: muscle_controllers/MuscleController
+  name: m15
+  pid: {p: 700,  i: 0.01, d: 100}
+m16_controller:
+  type: muscle_controllers/MuscleController
+  name: m16
+  pid: {p: 700,  i: 0.01, d: 100}
+m17_controller:
+  type: muscle_controllers/MuscleController
+  name: m17
+  pid: {p: 700,  i: 0.01, d: 100}
+m18_controller:
+  type: muscle_controllers/MuscleController
+  name: m18
+  pid: {p: 700,  i: 0.01, d: 100}
+m19_controller:
+  type: muscle_controllers/MuscleController
+  name: m19
+  pid: {p: 700,  i: 0.01, d: 100}
+m20_controller:
+  type: muscle_controllers/MuscleController
+  name: m20
+  pid: {p: 700,  i: 0.01, d: 100}
+m21_controller:
+  type: muscle_controllers/MuscleController
+  name: m21
+  pid: {p: 700,  i: 0.01, d: 100}
+m22_controller:
+  type: muscle_controllers/MuscleController
+  name: m22
+  pid: {p: 700,  i: 0.01, d: 100}
+m23_controller:
+  type: muscle_controllers/MuscleController
+  name: m23
+  pid: {p: 700,  i: 0.01, d: 100}
+m24_controller:
+  type: muscle_controllers/MuscleController
+  name: m24
+  pid: {p: 700,  i: 0.01, d: 100}
+m25_controller:
+  type: muscle_controllers/MuscleController
+  name: m25
+  pid: {p: 700,  i: 0.01, d: 100}
+m26_controller:
+  type: muscle_controllers/MuscleController
+  name: m26
+  pid: {p: 700,  i: 0.01, d: 100}
+m27_controller:
+  type: muscle_controllers/MuscleController
+  name: m27
+  pid: {p: 700,  i: 0.01, d: 100}
+m28_controller:
+  type: muscle_controllers/MuscleController
+  name: m28
+  pid: {p: 700,  i: 0.01, d: 100}
+m29_controller:
+  type: muscle_controllers/MuscleController
+  name: m29
+  pid: {p: 700,  i: 0.01, d: 100}
+m30_controller:
+  type: muscle_controllers/MuscleController
+  name: m30
+  pid: {p: 700,  i: 0.01, d: 100}
+m31_controller:
+  type: muscle_controllers/MuscleController
+  name: m31
   pid: {p: 700,  i: 0.01, d: 100}
