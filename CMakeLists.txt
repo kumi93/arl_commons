@@ -5,6 +5,7 @@ find_package(catkin REQUIRED COMPONENTS
         roscpp
         arl_hw_msgs
         std_msgs
+        std_srvs
         )
 
 catkin_package(
@@ -24,3 +25,7 @@ include_directories(
 add_executable(muscle_command_spamming_test_node src/muscle_command_spamming_test_node.cpp)
 add_dependencies(muscle_command_spamming_test_node arl_hw_msgs_gencpp)
 target_link_libraries(muscle_command_spamming_test_node ${catkin_LIBRARIES})
+
+add_executable(rosjava_wrapper_node src/rosjava_wrapper_node.cpp)
+add_dependencies(rosjava_wrapper_node arl_hw_msgs_gencpp)
+target_link_libraries(rosjava_wrapper_node ${catkin_LIBRARIES})
