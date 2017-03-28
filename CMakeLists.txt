@@ -8,6 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
         std_srvs
         )
 
+find_package(Boost)
+
 catkin_package(
 #        INCLUDE_DIRS include
 #        CATKIN_DEPENDS roscpp
@@ -19,12 +21,21 @@ catkin_package(
 include_directories(
         include
         ${catkin_INCLUDE_DIRS}
+        ${Boost_INCLUDE_DIRS}
 )
 
 ## Declare a C++ executable
-add_executable(muscle_command_spamming_test_node src/muscle_command_spamming_test_node.cpp)
-add_dependencies(muscle_command_spamming_test_node arl_hw_msgs_gencpp)
-target_link_libraries(muscle_command_spamming_test_node ${catkin_LIBRARIES})
+#add_executable(muscle_command_spamming_test_node src/muscle_command_spamming_test_node.cpp)
+#add_dependencies(muscle_command_spamming_test_node arl_hw_msgs_gencpp)
+#target_link_libraries(muscle_command_spamming_test_node ${catkin_LIBRARIES})
+
+add_executable(muscle_control_test_node src/muscle_control_test_node.cpp)
+add_dependencies(muscle_control_test_node arl_hw_msgs_gencpp)
+target_link_libraries(muscle_control_test_node ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(fast_valve_setting src/fast_valve_setting.cpp)
+add_dependencies(fast_valve_setting arl_hw_msgs_gencpp)
+target_link_libraries(fast_valve_setting ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 add_executable(rosjava_wrapper_node src/rosjava_wrapper_node.cpp)
 add_dependencies(rosjava_wrapper_node arl_hw_msgs_gencpp)
