@@ -30,7 +30,6 @@ bool getROSTopics(ros::master::V_TopicInfo &topics) {
     return true;
 }
 
-
 int main(int argc, char **argv) {
     ros::init(argc, argv, "muscle_command_spamming_test_node");
     ros::NodeHandle n;
@@ -52,7 +51,7 @@ int main(int argc, char **argv) {
             pub.publish(msg);
             activation_rate.sleep();
 
-            msg.data = -0.9;
+            msg.data = -0.3;
             pub.publish(msg);
 
             if (!ros::ok()) {
