@@ -1,8 +1,0 @@
-<launch>
-    <rosparam command="load" file="$(find arl_commons)/config/test_driver.yaml"/>
-    <node pkg="arl_hw" type="arl_driver_node" name="arl_driver_node"/>
-    <rosparam command="load" file="$(find arl_commons)/config/test_controller.yaml"/>
-    <node name="muscle_controller_spawner" pkg="controller_manager" type="spawner" output="screen"
-          args="m0_controller m1_controller m2_controller m3_controller m4_controller m5_controller m6_controller m7_controller m8_controller m9_controller m10_controller m11_controller m12_controller m13_controller m14_controller m15_controller m16_controller m17_controller m18_controller m19_controller m20_controller m21_controller m22_controller m23_controller m24_controller m25_controller m26_controller m27_controller m28_controller m29_controller m30_controller m31_controller"/>
-    <node pkg="arl_commons" type="muscle_command_spamming_test_node" name="muscle_command_spamming_test_node"/>
-</launch>
