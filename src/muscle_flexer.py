@@ -14,12 +14,12 @@ class Flexer:
         self._name = name
         self._ros_master = xmlrpclib.ServerProxy(os.environ['ROS_MASTER_URI'])
         self._musculature_command_publisher = rospy.Publisher('/muscle_muxer/musculature_command', MusculatureCommand, queue_size=10)
-        rospy.Subscriber('/muscle_muxer/musculature_state', MusculatureState, self._muscle_state_callback)
-        self._selected_muscle_names = ['muscle_1','muscle_13','muscle_22']
+        #self._selected_muscle_names = ['muscle_1','muscle_2','muscle_5','muscle_8','muscle_11','muscle_15','muscle_16','muscle_23','muscle_24','muscle_26']
+        self._selected_muscle_names = ['muscle_24','muscle_27', 'muscle_25', 'muscle_26']
         self._number_of_muscles = len(self._selected_muscle_names)
         self._rate_hz = 100
-        self._min_pressure = 3500.0
-        self._max_pressure = 8000.0
+        self._min_pressure = 4500.0
+        self._max_pressure = 7500.0
         self._step_size = (1.0 / self._rate_hz) * math.pi
 
     def run(self):
@@ -45,10 +45,6 @@ class Flexer:
             muscle_command.control_mode = 0
             musculature_command.muscle_commands.append(muscle_command)
         self._musculature_command_publisher.publish(musculature_command)
-
-    def _muscle_state_callback(self, data):
-        s = ""
-        #print data
 
 if __name__ == '__main__':
     try:
