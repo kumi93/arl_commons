@@ -11,7 +11,7 @@ class Example:
         arm = ArlArm()
         command = ArlMuscleCommand()
         command.name = 'muscle_25'
-        command.pressure = 999
+        command.pressure = 3500.0 #(up to 10000.0)
         command.control_mode = ArlMuscleControlMode.BY_PRESSURE
         arm.sendMuscleCommand(command)
 
