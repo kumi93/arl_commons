@@ -236,7 +236,7 @@ class ArlArm:
         musculature_command = MusculatureCommand()
         musculature_command.header.stamp = rospy.get_rostime()
         musculature_command.header.frame_id = '0'
-        for muscle_command in enumerate(commands):
+        for name, muscle_command in commands.iteritems():
             musculature_command.muscle_commands.append(self._generate_muscle_command_msg(muscle_command))
         self._musculature_command_publisher.publish(musculature_command)
 
