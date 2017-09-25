@@ -12,8 +12,8 @@ class Muxer:
     def __init__(self, name):
         rospy.init_node(name, anonymous=True)
         self._ros_master = xmlrpclib.ServerProxy(os.environ['ROS_MASTER_URI'])
-        self._muscle_mux_state_publisher = rospy.Publisher('/muscle_muxer/musculature_state', MusculatureState, queue_size=100)
-        rospy.Subscriber('/muscle_muxer/musculature_command', MusculatureCommand, self._muscle_command_mux_callback, queue_size=100)
+        self._muscle_mux_state_publisher = rospy.Publisher('/muscle_muxer/musculature_state', MusculatureState, queue_size=10)
+        rospy.Subscriber('/muscle_muxer/musculature_command', MusculatureCommand, self._muscle_command_mux_callback, queue_size=10)
         self._muscle_pressure_command_publishers = {}
         self._muscle_activation_command_publishers = {}
         self._muscle_states = {}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+  <!-- Muscle Muxer -->
+  <node pkg="arl_commons" type="muscle_mux.py" name="muscle_muxer_node" />
+
+  <!-- Robot Demonstration Node -->
+  <node pkg="arl_commons" type="robot_demo.py" name="robot_demo_node"/>
+
+</launch>
