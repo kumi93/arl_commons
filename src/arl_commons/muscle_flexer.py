@@ -13,7 +13,7 @@ class Flexer:
         rospy.init_node(name, anonymous=True)
         self._name = name
         self._ros_master = xmlrpclib.ServerProxy(os.environ['ROS_MASTER_URI'])
-        self._musculature_command_publisher = rospy.Publisher('/muscle_muxer/musculature_command', MusculatureCommand, queue_size=10)
+        self._musculature_command_publisher = rospy.Publisher('/musculature/command', MusculatureCommand, queue_size=10)
         #self._selected_muscle_names = ['muscle_1','muscle_2','muscle_5','muscle_8','muscle_11','muscle_15','muscle_16','muscle_23','muscle_24','muscle_26']
         self._selected_muscle_names = ['muscle_24','muscle_27', 'muscle_25', 'muscle_26']
         self._number_of_muscles = len(self._selected_muscle_names)

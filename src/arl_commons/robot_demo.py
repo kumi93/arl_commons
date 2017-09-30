@@ -15,10 +15,10 @@ class Demonstration:
         rospy.init_node(name, anonymous=True)
         self._name = name
         self._ros_master = xmlrpclib.ServerProxy(os.environ['ROS_MASTER_URI'])
-        self._musculature_command_publisher = rospy.Publisher('/muscle_muxer/musculature_command', MusculatureCommand, queue_size=10)
-        self._musculature_state_subscriber = rospy.Subscriber('/muscle_muxer/musculature_state', MusculatureState, self._musculature_state_callback, queue_size=10)
+        self._musculature_command_publisher = rospy.Publisher('/musculature/command', MusculatureCommand, queue_size=10)
+        self._musculature_state_subscriber = rospy.Subscriber('/musculature/state', MusculatureState, self._musculature_state_callback, queue_size=10)
 
-        self._rate_hz = 10
+        self._rate_hz = 100
         self._steps_per_movement = self._rate_hz * 10
         self._idle = 4000.0
         self._initial = [self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle, self._idle]
@@ -71,6 +71,9 @@ class Demonstration:
                     else:
                         self._send_musculature_command(next_pressures)
                         rate.sleep()
+
+                if self._execution_ended:
+                    break
 
                 target += 1
 

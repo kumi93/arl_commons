@@ -171,8 +171,8 @@ class ArlArm:
     def __init__(self):
         rospy.init_node('pyarlarm_node', anonymous=True)
         self._ros_master = xmlrpclib.ServerProxy(os.environ['ROS_MASTER_URI'])
-        self._musculature_command_publisher = rospy.Publisher('/muscle_muxer/musculature_command', MusculatureCommand, queue_size=100)
-        rospy.Subscriber('/muscle_muxer/musculature_state', MusculatureState, self._musculature_state_callback, queue_size=100)
+        self._musculature_command_publisher = rospy.Publisher('/musculature/command', MusculatureCommand, queue_size=10)
+        rospy.Subscriber('/musculature/state', MusculatureState, self._musculature_state_callback, queue_size=10)
         self._musculature_state = ArlMusculature()
 
         signal.signal(signal.SIGINT, self.sig_handler)

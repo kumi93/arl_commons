@@ -15,13 +15,11 @@ class Example:
         command.control_mode = ArlMuscleControlMode.BY_PRESSURE
         arm.sendMuscleCommand(command)
 
-        count = 0
         while arm.ok:
             try:
-                command.pressure = 100 * count
+                command.pressure += 1000
                 arm.sendMuscleCommand(command)
                 print str(arm.receiveMuscleState('muscle_25').desired_pressure)
-                count +=1
                 sleep(1)
             except ArlArmException as e:
                 pass
