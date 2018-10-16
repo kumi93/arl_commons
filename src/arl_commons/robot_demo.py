@@ -8,6 +8,7 @@ import pandas as pd
 import os
 import rospy
 import roslib
+import rospkg
 from arl_hw_msgs.msg import Muscle, MuscleCommand, MusculatureState, MusculatureCommand
 
 
@@ -22,8 +23,8 @@ class Demonstration:
         self._steps_per_movement = self._rate_hz * 1
         self._idle = 0.0
         # read the csv file for specified pressures to generate trajectory
-        cwd = os.path.abspath(os.path.join(__file__, "../.."))
-        self._trajectory = pd.read_csv(cwd +'/config/'+'pressures_trajectory.csv')
+        proj_path =  rospkg.RosPack().get_path('arl_commons')
+        self._trajectory = pd.read_csv(proj_path +'/config/pressures_trajectory.csv')
         # reset all muscles in case of muscle memory
         self._initial = [0.0*i for i in range(32)]
         self._send_musculature_command(self._initial)
