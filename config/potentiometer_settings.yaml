@@ -1,11 +1,11 @@
 joint_1:
   effective_angle: 324
-  gear_ratio: 0.6470588235294118
-  voltage_max: 10.5
-  voltage_zero_angle: 5.2
+  gear_ratio: 0.64706
+  voltage_max: 7.947
+  voltage_zero_angle: 3.97
 joint_2:
   effective_angle: 324
-  gear_ratio: 0.6470588235294118
-  voltage_max: 10.5
-  voltage_zero_angle: 5.2
+  gear_ratio: 0.64706
+  voltage_max: 7.947
+  voltage_zero_angle: 3.97
 
