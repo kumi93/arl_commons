@@ -1,18 +1,19 @@
 #!/usr/bin/env python
+
 import os
-import glob
-import numpy as np
-from scipy.spatial import ConvexHull
-import xmlrpclib
-from stl import mesh
 import yaml
-from rosbag.bag import Bag
+import glob
+import xmlrpclib
+import numpy as np
+from stl import mesh
+from scipy.spatial import ConvexHull
 
 import rospy
 import rosbag
 import roslib
-import tf
 import rospkg
+
+import tf
 from visualization_msgs.msg import Marker
 
 
@@ -67,8 +68,9 @@ class WorkEnvelopePublisher:
 
 class MeshGenerator:
 
-    def __init__(self, bag_path):
+    def __init__(self, bag_path, training_data_topic):
         self._bag_path = bag_path
+        self._training_data_topic = training_data_topic
 
     def generate_mesh(self, save_path):
         points = self._bag_reader()
@@ -88,16 +90,18 @@ class MeshGenerator:
         bags = glob.glob(path_regex)
         positions = list()
         for b in bags:
-            info_dict = yaml.load(Bag(b, 'r')._get_yaml_info())
+            rospy.loginfo('Loading bag: ' + b)
+            info_dict = yaml.load(rosbag.Bag(b, 'r')._get_yaml_info())
             messages_num = info_dict['messages']
             bag = rosbag.Bag(b)
             count = 0
-            for topic, msg, t in bag.read_messages(topics=['/training/state_data']):
+            for topic, msg, t in bag.read_messages(topics=[]):
                 positions.append([msg.hand_pose.pose.position.x, msg.hand_pose.pose.position.y,
                                   msg.hand_pose.pose.position.z])
-                if count % 10000 is 0:
-                    rospy.loginfo(str((count / messages_num) * 100) + '% of messages processed')
                 count += 1
+                if count % 10000 is 0:
+                    percentage = ((count / float(messages_num)) * 100)
+                    rospy.loginfo('{0:.2f}% of messages processed'.format(percentage))
 
             bag.close()
         return np.array(positions)
@@ -105,16 +109,17 @@ class MeshGenerator:
 
 if __name__ == '__main__':
     rospy.init_node('work_envelope_publisher_node', anonymous=True)
+    generate_mesh = rospy.get_param('~generate_mesh', False)
+    training_data_topic = rospy.get_param('~training_data_topic', '/training/state_data')
 
     try:
         mesh_uri = 'package://arl_commons/config/work_envelope_gen.stl'
         bag_path = '/home/user/tmp/bags'
-        generate_mesh = True
         mesh_path = rospkg.RosPack().get_path('arl_commons') + '/config/work_envelope_gen.stl'
 
         if generate_mesh:
             rospy.logwarn('Generation of work envelope can take a long time.')
-            mesh_gen = MeshGenerator(bag_path)
+            mesh_gen = MeshGenerator(bag_path, training_data_topic)
             mesh_gen.generate_mesh(mesh_path)
 
         node = WorkEnvelopePublisher(mesh_uri)
