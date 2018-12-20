@@ -89,19 +89,20 @@ class MeshGenerator:
         path_regex = self._bag_path + '/*.bag'
         bags = glob.glob(path_regex)
         positions = list()
-        for b in bags:
+        for bag_count, b in enumerate(bags):
             rospy.loginfo('Loading bag: ' + b)
             info_dict = yaml.load(rosbag.Bag(b, 'r')._get_yaml_info())
             messages_num = info_dict['messages']
             bag = rosbag.Bag(b)
-            count = 0
+            msg_count = 0
             for topic, msg, t in bag.read_messages(topics=[]):
                 positions.append([msg.hand_pose.pose.position.x, msg.hand_pose.pose.position.y,
                                   msg.hand_pose.pose.position.z])
-                count += 1
-                if count % 10000 is 0:
-                    percentage = ((count / float(messages_num)) * 100)
-                    rospy.loginfo('{0:.2f}% of messages processed'.format(percentage))
+                msg_count += 1
+                if msg_count % 10000 is 0:
+                    percentage = ((msg_count / float(messages_num)) * 100)
+                    rospy.loginfo('{0:.2f}% of messages processed of bag {1}/{2}'.format(percentage, bag_count + 1,
+                                                                                         len(bags)))
 
             bag.close()
         return np.array(positions)
