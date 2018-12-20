@@ -3,6 +3,7 @@
 import os
 import yaml
 import glob
+import pickle
 import xmlrpclib
 import numpy as np
 from stl import mesh
@@ -103,8 +104,12 @@ class MeshGenerator:
                     percentage = ((msg_count / float(messages_num)) * 100)
                     rospy.loginfo('{0:.2f}% of messages processed of bag {1}/{2}'.format(percentage, bag_count + 1,
                                                                                          len(bags)))
-
             bag.close()
+
+        serialized_file = open('/tmp/points_list.bin', mode='w')
+        pickle.dump(positions, serialized_file)
+        serialized_file.close()
+
         return np.array(positions)
 
 
