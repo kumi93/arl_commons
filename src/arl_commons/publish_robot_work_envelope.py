@@ -91,20 +91,23 @@ class MeshGenerator:
         bags = glob.glob(path_regex)
         positions = list()
         for bag_count, b in enumerate(bags):
-            rospy.loginfo('Loading bag: ' + b)
-            info_dict = yaml.load(rosbag.Bag(b, 'r')._get_yaml_info())
-            messages_num = info_dict['messages']
-            bag = rosbag.Bag(b)
-            msg_count = 0
-            for topic, msg, t in bag.read_messages(topics=[]):
-                positions.append([msg.hand_pose.pose.position.x, msg.hand_pose.pose.position.y,
-                                  msg.hand_pose.pose.position.z])
-                msg_count += 1
-                if msg_count % 10000 is 0:
-                    percentage = ((msg_count / float(messages_num)) * 100)
-                    rospy.loginfo('{0:.2f}% of messages processed of bag {1}/{2}'.format(percentage, bag_count + 1,
-                                                                                         len(bags)))
-            bag.close()
+            try:
+                rospy.loginfo('Loading bag: ' + b)
+                info_dict = yaml.load(rosbag.Bag(b, 'r')._get_yaml_info())
+                messages_num = info_dict['messages']
+                bag = rosbag.Bag(b)
+                msg_count = 0
+                for topic, msg, t in bag.read_messages(topics=[]):
+                    positions.append([msg.hand_pose.pose.position.x, msg.hand_pose.pose.position.y,
+                                      msg.hand_pose.pose.position.z])
+                    msg_count += 1
+                    if msg_count % 10000 is 0:
+                        percentage = ((msg_count / float(messages_num)) * 100)
+                        rospy.loginfo('{0:.2f}% of messages processed of bag {1}/{2}'.format(percentage, bag_count + 1,
+                                                                                             len(bags)))
+                bag.close()
+            except Exception:
+                pass
 
         serialized_file = open('/tmp/points_list.bin', mode='w')
         pickle.dump(positions, serialized_file)
