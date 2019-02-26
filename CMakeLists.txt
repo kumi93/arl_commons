@@ -9,6 +9,8 @@ find_package(catkin REQUIRED COMPONENTS
         arl_hw_msgs
         std_msgs
         std_srvs
+        tf
+        visualization_msgs
 )
 
 find_package(Boost)
